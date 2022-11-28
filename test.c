@@ -18,13 +18,14 @@ void game()
 	InitBoard(show, ROWS, COLS, '*');//'*'
 
 	//打印棋盘
-	DisplayBoard(mine, ROW, COL);//只打印9*9
+	//DisplayBoard(mine, ROW, COL);//只打印9*9
 	DisplayBoard(show, ROW, COL);;//只打印9*9
 
 	//布置雷
 	SetMine(mine, ROW, COL);
+	//DisplayBoard(mine, ROW, COL);
 
-	//布置雷
+	//查找雷
 	FindMine(mine, show, ROW, COL);
 }
 int main()
@@ -52,3 +53,7 @@ int main()
 
 	return 0;
 }
+
+//可以优化
+//1.如果不是雷，周围没有雷 - 展开一片 - 递归
+//2.标记雷

@@ -4,6 +4,8 @@
 #include<stdlib.h>
 #include<time.h>
 
+#define EASY_COUNT 10
+
 #define ROW 9
 #define COL 9
 
@@ -21,3 +23,4 @@ void SetMine(char mine[ROWS][COLS], int row, int col);
 
 //ÅÅ²éÀ×
 void FindMine(char mine[ROWS][COLS],char show[ROWS][COLS], int row, int col);
+
