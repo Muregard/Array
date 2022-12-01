@@ -1,59 +1,111 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include"game.h"
+#include<stdio.h>
 
-void menu()
+//1.冒泡排序
+
+//2.
+//实现函数init()初始化数组为全0
+//实现函数print()打印数组的每个元素
+//实现函数reverse()完成数组的逆置
+
+//void init(int arr[], int sz)
+//{
+//	int i = 0;
+//	for (i = 0;i < sz;i++)
+//	{
+//		arr[i] = 0;
+//	}
+//}
+//
+//void print(int arr[], int sz)
+//{
+//	int i = 0;
+//	for (i = 0;i < sz;i++)
+//	{
+//		printf("%d ",arr[i]);
+//	}
+//	printf("\n");
+//}
+//
+//void reverse(int arr[], int sz)
+//{
+//	int left = 0;
+//	int right = sz - 1;
+//	int temp = 0;
+//	while (left < right)
+//	{
+//		temp = arr[right];
+//		arr[right] = arr[left];
+//		arr[left] = temp;
+//		left++;
+//		right--;
+//	}
+//}
+//
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	print(arr, sz);
+//
+//	//完成数组的逆置
+//	reverse(arr, sz);
+//	print(arr, sz);
+//
+//	//初始化为全0
+//	init(arr, sz);
+//	print(arr, sz);
+//
+//
+//
+//	return 0;
+//}
+
+//3.将数组A和数组B的内容进行交换(数组一样大)
+
+void print(int arr[], int sz)
 {
-	printf("*************************\n");
-	printf("***** 1.play  0.exit*****\n");
-	printf("*************************\n");
+	int i = 0;
+	for (i = 0;i < sz;i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
 }
 
-void game()
+void exchange(int* arr1, int* arr2,int sz)
 {
-	char mine[ROWS][COLS];//存放布置好的雷的信息
-	char show[ROWS][COLS];//存放排查出的雷的信息
-	//初始化棋盘
-	InitBoard(mine, ROWS, COLS, '0');//'0'
-	InitBoard(show, ROWS, COLS, '*');//'*'
+	int i = 0;
+	for (i = 0;i < sz;i++)
+	{
+		int temp = 0;
+		temp = arr1[i];
+		arr1[i] = arr2[i];
+		arr2[i] = temp;
+	}
 
-	//打印棋盘
-	//DisplayBoard(mine, ROW, COL);//只打印9*9
-	DisplayBoard(show, ROW, COL);;//只打印9*9
-
-	//布置雷
-	SetMine(mine, ROW, COL);
-	//DisplayBoard(mine, ROW, COL);
-
-	//查找雷
-	FindMine(mine, show, ROW, COL);
+	int* temp = 0;
+	temp = arr1;
+	arr1 = arr2;
+	arr2 = temp;
 }
+
 int main()
 {
-	int input = 0;
-	srand((unsigned int)time(NULL));
-	do
-	{
-		menu();
-		printf("请选择:>");
-		scanf("%d", &input);
-		switch (input)
-		{
-		case 1:
-			game();
-			break;
-		case 0:
-			printf("退出游戏\n");
-			break;
-		default:
-			printf("输入错误，请重新输入\n");
-			break;
-		}
-	} while (input);
+	int arr1[] = {1,3,5,7,9};
+	int arr2[] = {2,4,6,8,10};
+	int sz = sizeof(arr1) / sizeof(arr1[0]);
+	print(arr1, sz);
+	print(arr2, sz);
 
+	//实现交换
+	exchange(arr1, arr2,sz);
+
+	//打印交换后结果
+	print(arr1, sz);
+	print(arr2, sz);
 	return 0;
 }
 
-//可以优化
-//1.如果不是雷，周围没有雷 - 展开一片 - 递归
-//2.标记雷
+//4.三子棋
